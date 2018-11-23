@@ -1,0 +1,199 @@
+<div class="all" dir="rtl">
+  <mat-card class="maincard">
+    <section>
+      <div class="inputfields">
+        <mat-form-field>
+          <input [(ngModel)]="model.first_name" type="text" matInput placeholder="نام" maxlength="32">
+        </mat-form-field>
+      </div>
+      <div class="inputfields">
+        <mat-form-field>
+          <input [(ngModel)]="model.last_name" type="text" matInput placeholder="نام خانوادگی" maxlength="32">
+        </mat-form-field>
+
+      </div>
+      <!--<div>-->
+
+      <!--<dp-date-picker-->
+      <!--dir="rtl"-->
+      <!--[(ngModel)]="birth_date"-->
+      <!--mode="day"-->
+      <!--placeholder="تاریخ تولد"-->
+      <!--theme="dp-material"-->
+      <!--style="box-shadow: slategray "-->
+      <!--&gt;-->
+
+      <!--</dp-date-picker>-->
+
+      <!--</div>-->
+      <div>
+        <mat-form-field>
+          <input [(ngModel)]="model.birth_date" matInput [matDatepicker]="picker5" (dateInput)="onInput($event)" (dateChange)="onChange($event)"
+                 placeholder="dateInput and dateChange events">
+          <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+          <mat-datepicker #picker5></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="inputfields">
+        <mat-form-field>
+          <input [(ngModel)]="model.phone" type="number" matInput placeholder="شماره تماس" maxlength="16">
+        </mat-form-field>
+      </div>
+      <div>
+        <label>جنسیت :</label>
+        <mat-radio-group [(ngModel)]="model.gender">
+          <mat-radio-button value="true">مرد</mat-radio-button>
+          <mat-radio-button value="false">زن</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="inputfields">
+        <mat-form-field>
+          <input [(ngModel)]="model.website" type="url" matInput placeholder="وب سایت و وبلاگ">
+        </mat-form-field>
+      </div>
+      <div class="inputfields">
+        <mat-form-field>
+          <input [(ngModel)]="model.email" type="email" matInput placeholder="آدرس ایمیل">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" class="inputfields-btn">
+        <label>لطفا فایل تصویر خود را انتخاب کنید</label>
+        <button mat-raised-button color="primary" (click)="imgFileInput.click()">انتخاب فایل</button>
+        <input [(ngModel)]="model.image_file" hidden type="file" #imgFileInput (change)="onFileSelected($event)"/>
+        <p *ngIf="image_file">فایل انتخابی شما : {{image_file.name}}</p>
+      </div>
+      <div class="inputfields">
+        <mat-form-field>
+          <mat-select [(ngModel)]="model.hawzah" placeholder="تحصیلات حوزوی">
+            <mat-option *ngFor="let haw of hawzah" [value]="haw.hawzah_edu">
+              {{haw.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="inputfields">
+        <mat-form-field>
+          <mat-select [(ngModel)]="model.university" placeholder="تحصیلات دانشگاهی">
+            <!--<mat-option *ngFor="let uni of university" [value]="uni.value">-->
+            <mat-option *ngFor="let uni of university" [value]="uni.uni_edu">
+              {{uni.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="inputfields">
+        <mat-form-field>
+          <input [(ngModel)]="model.uni_edu_field" type="text" matInput placeholder="رشته دانشگاهی">
+        </mat-form-field>
+      </div>
+      <div class="inputfields">
+        <mat-form-field>
+          <input [(ngModel)]="model.edu_descriptions" type="text" matInput placeholder="توضیحات مقاطع تحصیلی بیشتر">
+        </mat-form-field>
+      </div>
+      <div>
+        <label>تخصص در حیطه گروه سنی مخاطب :</label>
+        <mat-form-field>
+          <mat-select [(ngModel)]="model.proficiencyList" id="proficiency" placeholder="انتخاب تخصص" multiple>
+            <mat-option *ngFor="let prof of proficiencyList" [value]="prof">{{prof.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <label>عناوین شغلی :</label>
+        <mat-form-field>
+          <mat-select [(ngModel)]="model.jobs" placeholder="عناوین شغلی" multiple>
+            <mat-option *ngFor="let job of jobs" [value]="job">
+              {{job.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <label>در صورت داشتن عناوین شغلی دیگر می توانید در کادر زیر وارد کنید</label>
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.other_jobs_desc" matInput placeholder="عنوان شغلی"></textarea>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-select [(ngModel)]="model.productsList" id="" placeholder="تولیدات رسانه ای" multiple>
+            <label>تولیدات رسانه ای</label>
+            <mat-option *ngFor="let prod of productsList" [value]="prod">{{prod.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <label>نام آثار و دیگر تولیدات خود را می توانید در کادر زیر وارد کنید</label>
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.product_other" matInput placeholder="عنوان شغلی"></textarea>
+        </mat-form-field>
+      </div>
+      <!--<div>-->
+      <!--<mat-checkbox [(ngModel)]="model.khordsal_proficiency" [value]="">mire</mat-checkbox>-->
+      <!--<mat-checkbox [(ngModel)]="model.koodak_proficiency" [value]="">ahmadi</mat-checkbox>-->
+      <!--<mat-checkbox [(ngModel)]="model.nojavan_proficiency" [value]="">qodmanan</mat-checkbox>-->
+      <!--</div>-->
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.resume" matInput placeholder="سوابق کاری :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.current_act" matInput placeholder="مشغول به فعالیت در :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.compilations" matInput placeholder="تالیفات :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.projects" matInput placeholder="پروژه ها :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.social_networks" matInput placeholder="شبکه‌های اجتماعی اثرگذار :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.honors_rewards" matInput placeholder="افتخارات و جوایز :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.innovations" matInput placeholder="اختراعات و نوآوری ها :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.courses_passed" matInput placeholder="دوره‌های گذرانده شده :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.courses_teaching" matInput
+                    placeholder="دوره‌هایی که می‌توانید تدریس کنید :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.ideas" matInput placeholder="اقدامات آینده، ایده ها و آرزوها :"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="text-area">
+        <mat-form-field class="text-area-width">
+          <textarea [(ngModel)]="model.suggestions" matInput placeholder="پیشنهادات :"></textarea>
+        </mat-form-field>
+      </div>
+    </section>
+    <button mat-raised-button color="primary" (click)="are(model)">ارسال فرم</button>
+
+  </mat-card>
+
+</div>

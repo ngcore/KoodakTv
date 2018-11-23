@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@font-face {
+  font-family: IRANSansWeb;
+  src: url(assets/fonts/woff/IRANSansWeb.woff) format("woff");
+  src: url(assets/fonts/woff2/IRANSansWeb.woff2) format("woff2");
+  src: url(assets/fonts/eot/IRANSansWeb.eot) format("embedded-opentype");
+  src: url(assets/fonts/ttf/IRANSansWeb.ttf) format("truetype");
+}

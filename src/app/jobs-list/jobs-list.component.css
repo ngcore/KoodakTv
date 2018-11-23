@@ -1,0 +1,56 @@
+html, body {
+  display: flex;
+  line-height: initial;
+
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: IRANSansWeb;
+}
+.maincard {
+  width: 80%;
+}
+
+.inputfields {
+  display: flex;
+  width: 100%;
+  /*padding: 0;*/
+  /*margin: 0;*/
+  /*list-style: none;*/
+
+  /*display: -webkit-box;*/
+  /*display: -moz-box;*/
+  /*display: -ms-flexbox;*/
+  /*display: -webkit-flex;*/
+  /*display: flex;*/
+
+  /*-webkit-flex-flow: row wrap;*/
+  /*justify-content: space-around;*/
+  /*line-height: 5rem;*/
+  text-align: right;
+}
+.inputfields > *{
+  width: 100%;
+}
+.inputfields-btn{
+  width: 50%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  padding-right: 16px;
+}
+
+.text-area {
+  min-width: fit-content;
+  max-width: 500px;
+  width: 100%;
+}
+
+.text-area-width {
+  width: 100%;
+  line-height: initial;
+  min-height:50px ;
+
+}
