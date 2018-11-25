@@ -1,12 +1,19 @@
-import {ProficiencyModel} from './proficiency.model';
-import {HawzahEduModel} from './hawzah-edu.model';
-import {UniversityEduModel} from './university-edu.model';
-import {JobsModel} from './jobs.model';
-import {ProductsModel} from './products.model';
+export class Person {
 
-export class SignupModel {
+  constructor() {
+    this.khordsal_proficiency = false;
+    this.koodak_proficiency = false;
+    this.nojavan_proficiency = false;
+    //
+    this.product_tv = false;
+    this.product_cinema = false;
+    this.product_short = false;
+    this.product_animation = false;
+    this.product_software = false;
+    this.product_game = false;
+  }
+
   public id: number;
-  public title: string;
   public first_name: string;
   public last_name: string;
   public birth_date: Date;
@@ -14,15 +21,14 @@ export class SignupModel {
   public gender: boolean;
   public website: string;
   public email: string;
-  public image_file: File;
-  hawzah: HawzahEduModel[];
+  public imageFile: File;
+  public hawzah_edu: string;
   public uni_edu: string;
-  university: UniversityEduModel[];
   public uni_edu_field: string;
   public edu_descriptions: string;
-  // public proficiency: ProficiencyModel[];
-  public jobs: JobsModel[];
-  public productsList: ProductsModel[];
+  public khordsal_proficiency: boolean;
+  public koodak_proficiency: boolean;
+  public nojavan_proficiency: boolean;
   public other_jobs_desc: string;
   public product_tv: boolean;
   public product_cinema: boolean;
@@ -42,8 +48,4 @@ export class SignupModel {
   public courses_teaching: string;
   public ideas: string;
   public suggestions: string;
-  public proficiencyList: ProficiencyModel[];
-  public khordsal_proficiency: boolean;
-  public koodak_proficiency: boolean;
-  public nojavan_proficiency: boolean;
 }
