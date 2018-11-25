@@ -28,7 +28,8 @@
       <!--</div>-->
       <div>
         <mat-form-field>
-          <input [(ngModel)]="model.birth_date" matInput [matDatepicker]="picker5" (dateInput)="onInput($event)" (dateChange)="onChange($event)"
+          <input [(ngModel)]="model.birth_date" matInput [matDatepicker]="picker5" (dateInput)="onInput($event)"
+                 (dateChange)="onChange($event)"
                  placeholder="dateInput and dateChange events">
           <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
           <mat-datepicker #picker5></mat-datepicker>
@@ -64,19 +65,19 @@
       </div>
       <div class="inputfields">
         <mat-form-field>
-          <mat-select [(ngModel)]="model.hawzah" placeholder="تحصیلات حوزوی">
-            <mat-option *ngFor="let haw of hawzah" [value]="haw.hawzah_edu">
-              {{haw.viewValue}}
+          <mat-select [(ngModel)]="model.hawzah_edu" placeholder="تحصیلات حوزوی">
+            <mat-option *ngFor="let haw of hawzah" [value]="haw.value">
+              {{haw.title}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="inputfields">
         <mat-form-field>
-          <mat-select [(ngModel)]="model.university" placeholder="تحصیلات دانشگاهی">
+          <mat-select [(ngModel)]="model.uni_edu" placeholder="تحصیلات دانشگاهی">
             <!--<mat-option *ngFor="let uni of university" [value]="uni.value">-->
-            <mat-option *ngFor="let uni of university" [value]="uni.uni_edu">
-              {{uni.viewValue}}
+            <mat-option *ngFor="let uni of university" [value]="uni.value">
+              {{uni.title}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -93,11 +94,9 @@
       </div>
       <div>
         <label>تخصص در حیطه گروه سنی مخاطب :</label>
-        <mat-form-field>
-          <mat-select [(ngModel)]="model.proficiencyList" id="proficiency" placeholder="انتخاب تخصص" multiple>
-            <mat-option *ngFor="let prof of proficiencyList" [value]="prof">{{prof.title}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <mat-checkbox [(ngModel)]="model.khordsal_proficiency" value="false">خردسال</mat-checkbox>
+        <mat-checkbox [(ngModel)]="model.koodak_proficiency">کودک</mat-checkbox>
+        <mat-checkbox [(ngModel)]="model.nojavan_proficiency">نوجوان</mat-checkbox>
       </div>
 
       <div>
@@ -117,12 +116,13 @@
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field>
-          <mat-select [(ngModel)]="model.productsList" id="" placeholder="تولیدات رسانه ای" multiple>
-            <label>تولیدات رسانه ای</label>
-            <mat-option *ngFor="let prod of productsList" [value]="prod">{{prod.title}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <label>تولیدات رسانه ای</label>
+        <mat-checkbox [(ngModel)]="model.product_tv">تلویزیونی</mat-checkbox>
+        <mat-checkbox [(ngModel)]="model.product_cinema">سینمایی</mat-checkbox>
+        <mat-checkbox [(ngModel)]="model.product_short">کار کوتاه</mat-checkbox>
+        <mat-checkbox [(ngModel)]="model.product_animation">انیمیشن</mat-checkbox>
+        <mat-checkbox [(ngModel)]="model.product_software">نرم افزار</mat-checkbox>
+        <mat-checkbox [(ngModel)]="model.product_game">بازی</mat-checkbox>
       </div>
       <div class="text-area">
         <label>نام آثار و دیگر تولیدات خود را می توانید در کادر زیر وارد کنید</label>
