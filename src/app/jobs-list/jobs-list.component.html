@@ -28,7 +28,7 @@
       <!--</div>-->
       <div>
         <mat-form-field>
-          <input [(ngModel)]="model.birth_date" matInput [matDatepicker]="picker5" (dateInput)="onInput($event)"
+          <input matInput [matDatepicker]="picker5" (dateInput)="onInput($event)"
                  (dateChange)="onChange($event)"
                  placeholder="dateInput and dateChange events">
           <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>

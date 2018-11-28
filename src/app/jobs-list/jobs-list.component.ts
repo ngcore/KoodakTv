@@ -6,6 +6,7 @@ import * as moment from 'jalali-moment';
 import {MatDatepickerInputEvent} from '@angular/material';
 import {Person} from '../models/person.model';
 import {ChoiceModel} from '../models/ChoiceModel';
+import {PersonService} from './person.service';
 
 @Component({
   selector: 'app-jobs-list',
@@ -32,11 +33,9 @@ export class JobsListComponent implements OnInit {
     {value: 'DCT', title: 'دکتری'}
   ];
 
-  jsonDate = '2018-01-08T20:21:29.4674496';
-  birth_date: string;
   jobs: JobsModel[] = [];
 
-  constructor(private jobsService: JobsService, private builder: FormBuilder) {
+  constructor(private jobsService: JobsService, private personService: PersonService) {
     // Get jobs
     this.jobsService.getJobs().subscribe(jobs => {
       this.jobs = jobs;
@@ -52,30 +51,20 @@ export class JobsListComponent implements OnInit {
 
   are(value) {
     console.log(value);
+    this.personService.postPerson(value).subscribe(person => {
+      console.log(person);
+      alert('Success');
+    }, error => {
+      console.log(error);
+      alert('Failure');
+    });
   }
 
   onInput(event: MatDatepickerInputEvent<moment.Moment>) {
-    console.log('OnInput: ', event.value);
+    this.model.birth_date = moment(event.value.toDate()).format('YYYY-MM-DD');
   }
 
   onChange(event: MatDatepickerInputEvent<moment.Moment>) {
-    this.birth_date = moment(event.value).format('jYYYY/jMM/jDD');
-    console.log(this.birth_date);
+    this.model.birth_date = moment(event.value.toDate()).format('YYYY-MM-DD');
   }
 }
-
-//
-// onSubmit(event: any) {
-//   this.valuses = event.target.value;
-//   console.log(this.valuses);
-// }
-// getCheckboxes() {
-//   console.log(this.jobs.filter(x => x.checked === true).map(x => x.name));
-// }
-//   onSubmit() {
-//     console.log(this.selectedJobs);
-//   }
-//   onChange(job: JobsListModel) {
-//     this.selectedJobs.push(job);
-//   }
-// }

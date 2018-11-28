@@ -16,7 +16,7 @@ export class Person {
   public id: number;
   public first_name: string;
   public last_name: string;
-  public birth_date: Date;
+  public birth_date: string;
   public phone: number;
   public gender: boolean;
   public website: string;
