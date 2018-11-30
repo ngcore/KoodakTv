@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {JobsService} from './jobs.service';
-import {JobsModel} from '../models/jobs.model';
+import {JobService} from './jobs.service';
+import {Job} from '../models/job.model';
 import * as moment from 'jalali-moment';
 import {MatDatepickerInputEvent} from '@angular/material';
 import {Person} from '../models/person.model';
-import {ChoiceModel} from '../models/ChoiceModel';
+import {Choice} from '../models/choice.model';
 import {PersonService} from './person.service';
+import {PersonJob} from '../models/personJob.model';
+import {PersonJobService} from './personJob.service';
 
 @Component({
   selector: 'app-jobs-list',
@@ -17,14 +18,14 @@ import {PersonService} from './person.service';
 export class JobsListComponent implements OnInit {
   model: Person = new Person();
 
-  hawzah: ChoiceModel[] = [
+  hawzah: Choice[] = [
     {value: 'NN', title: 'هیچکدام'},
     {value: 'LVL1', title: 'سطح یک'},
     {value: 'LVL2', title: 'سطح دو'},
     {value: 'LVL3', title: 'سطح سه'},
     {value: 'LVL4', title: 'سطح چهار'}
   ];
-  university: ChoiceModel[] = [
+  university: Choice[] = [
     {value: 'NN', title: 'هیچکدام'},
     {value: 'DPL', title: 'دیپلم'},
     {value: 'KRD', title: 'کاردانی'},
@@ -33,9 +34,12 @@ export class JobsListComponent implements OnInit {
     {value: 'DCT', title: 'دکتری'}
   ];
 
-  jobs: JobsModel[] = [];
+  jobs: Job[] = [];
+  selectedJobs = [];
 
-  constructor(private jobsService: JobsService, private personService: PersonService) {
+  constructor(private jobsService: JobService,
+              private personService: PersonService,
+              private personJobService: PersonJobService) {
     // Get jobs
     this.jobsService.getJobs().subscribe(jobs => {
       this.jobs = jobs;
@@ -52,11 +56,20 @@ export class JobsListComponent implements OnInit {
   are(value) {
     console.log(value);
     this.personService.postPerson(value).subscribe(person => {
-      console.log(person);
-      alert('Success');
+      const personJobs: PersonJob[] = [];
+      for (const jobId of this.selectedJobs) {
+        personJobs.push(new PersonJob(person.id, jobId));
+      }
+      this.personJobService.postPersonJobs(personJobs).subscribe(result => {
+        console.log(result);
+        alert('All operations succeeded.');
+      }, error => {
+        console.log(error);
+        alert('Failed to submit jobs.');
+      });
     }, error => {
       console.log(error);
-      alert('Failure');
+      alert('Failed to submit person info.');
     });
   }
 

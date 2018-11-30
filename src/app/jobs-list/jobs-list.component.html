@@ -102,8 +102,8 @@
       <div>
         <label>عناوین شغلی :</label>
         <mat-form-field>
-          <mat-select [(ngModel)]="model.jobs" placeholder="عناوین شغلی" multiple>
-            <mat-option *ngFor="let job of jobs" [value]="job">
+          <mat-select [(ngModel)]="selectedJobs" placeholder="عناوین شغلی" multiple>
+            <mat-option *ngFor="let job of jobs" [value]="job.id">
               {{job.title}}
             </mat-option>
           </mat-select>

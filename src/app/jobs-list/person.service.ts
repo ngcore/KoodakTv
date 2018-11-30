@@ -13,6 +13,7 @@ export class PersonService {
   }
 
   postPerson(person: Person): Observable<Person> {
-    return this.http.post<Person>('https://koodaktv.herokuapp.com/api/persons/', person);
+    return this.http.post<Person>(
+      'https://koodaktv.herokuapp.com/api/persons/', person);
   }
 }

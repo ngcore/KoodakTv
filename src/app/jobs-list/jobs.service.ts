@@ -1,18 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {JobsModel} from '../models/jobs.model';
 import {Observable} from 'rxjs';
+import {Job} from '../models/job.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class JobsService {
+export class JobService {
 
 
   constructor(private http: HttpClient) {
   }
 
-  getJobs(): Observable<JobsModel[]> {
-    return this.http.get<JobsModel[]>('https://koodaktv.herokuapp.com/api/jobs/');
+  getJobs(): Observable<Job[]> {
+    return this.http.get<Job[]>('https://koodaktv.herokuapp.com/api/jobs/');
   }
 }
